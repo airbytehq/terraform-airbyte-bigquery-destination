@@ -54,7 +54,7 @@ resource "airbyte_destination_bigquery" "bigquery_destination_gcs_staging" {
     project_id = data.google_project.project.project_id
     # Optional
     big_query_client_buffer_size_mb = var.big_query_client_buffer_size_mb
-    credentials_json = base64decode(google_service_account_key.airbyte_bq_controller.private_key)
+    credentials_json = google_service_account_key.airbyte_bq_controller.private_key
     transformation_priority = var.transformation_priority
     loading_method = {
       destination_bigquery_loading_method_gcs_staging = local.gcs_staging_method
