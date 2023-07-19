@@ -10,7 +10,7 @@ locals {
       keep_files_in_gcs_bucket = local.formatted_keep_files_after_processing
       file_buffer_count = var.gcs_file_options.file_buffer_count
       credential = {
-        destination_bigquery_loading_method_gcs_staging_credential_hmac_key = {
+        destination_bigquery_update_loading_method_gcs_staging_credential_hmac_key = {
           credential_type = "HMAC_KEY"
           hmac_key_access_id = google_storage_hmac_key.airbyte_bq_controller.access_id
           hmac_key_secret = google_storage_hmac_key.airbyte_bq_controller.secret
@@ -34,10 +34,10 @@ resource "airbyte_destination_bigquery" "bigquery_destination_standard_inserts" 
     project_id = data.google_project.project.project_id
     # Optional
     big_query_client_buffer_size_mb = var.big_query_client_buffer_size_mb
-    credentials_json = google_service_account_key.airbyte_bq_controller.private_key
+    credentials_json = base64decode(google_service_account_key.airbyte_bq_controller.private_key)
     transformation_priority = var.transformation_priority
     loading_method = {
-      destination_bigquery_loading_method_standard_inserts = local.standard_inserts_method
+      destination_bigquery_update_loading_method_standard_inserts = local.standard_inserts_method
     }
   }
 }
@@ -54,10 +54,10 @@ resource "airbyte_destination_bigquery" "bigquery_destination_gcs_staging" {
     project_id = data.google_project.project.project_id
     # Optional
     big_query_client_buffer_size_mb = var.big_query_client_buffer_size_mb
-    credentials_json = google_service_account_key.airbyte_bq_controller.private_key
+    credentials_json = base64decode(google_service_account_key.airbyte_bq_controller.private_key)
     transformation_priority = var.transformation_priority
     loading_method = {
-      destination_bigquery_loading_method_gcs_staging = local.gcs_staging_method
+      destination_bigquery_update_loading_method_gcs_staging = local.gcs_staging_method
     }
   }
 }
