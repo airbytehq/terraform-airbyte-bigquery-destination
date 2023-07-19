@@ -17,7 +17,7 @@ locals {
         }
       }
     }
-  # This is some dumb shenanigans to appease the terraform provider
+  # This is some shenanigans to appease the terraform provider
   standard_insert_count = var.loading_method == "standard-inserts" ? 1 : 0
   gcs_staging_count = var.loading_method == "gcs-staging" ? 1 : 0
 }
