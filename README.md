@@ -1,6 +1,15 @@
 # Setup a BigQuery Destination in Airbyte
 This module will create everything needed to set up a BigQuery destination.
 
+## !!! Known Issues !!!
+The following issues are present with this module
+
+### GCS Staging Loading Method not setup correctly
+The module will create the destination and GCP resources just fine, the 
+terraform apply will succeed, but when verifying the destination in Airbyte Cloud it is not set properly.
+
+Temporarily disabling the use of GCS Staging Loading method with this module
+
 ## Example usage
 ```
 terraform {
