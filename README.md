@@ -16,7 +16,7 @@ terraform {
   required_providers {
     airbyte = {
       source = "airbytehq/airbyte"
-      version = "0.1.4"
+      version = "0.3.0"
     }
 
     google = {
@@ -76,7 +76,7 @@ terraform {
   required_providers {
     airbyte = {
       source = "airbytehq/airbyte"
-      version = "0.1.4"
+      version = "0.3.0"
     }
 
     google = {
