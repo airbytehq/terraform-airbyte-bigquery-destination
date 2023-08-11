@@ -82,13 +82,13 @@ variable "loading_method" {
   description = "The Method for loading data into BigQuery, can be either `standard-inserts` or `gcs-staging` generally `gcs-staging` is more performant and efficient"
   validation {
     # TODO when this loading method issue is fixed, use this validation instead
-    # condition = contains(["gcs-staging", "standard-inserts"], var.loading_method)
-    # error_message = "The transformation_priority variable must be either `gcs-staging` or `standard-inserts`."
-    condition = contains(["standard-inserts"], var.loading_method)
-    error_message = "The transformation_priority variable must `standard-inserts`."
+    condition = contains(["gcs-staging", "standard-inserts"], var.loading_method)
+    error_message = "The transformation_priority variable must be either `gcs-staging` or `standard-inserts`."
+    # condition = contains(["standard-inserts"], var.loading_method)
+    # error_message = "The transformation_priority variable must `standard-inserts`."
   }
-  # default = "gcs-staging"
-  default = "standard-inserts"
+  default = "gcs-staging"
+  # default = "standard-inserts"
 }
 
 variable "gcs_bucket_info" {
