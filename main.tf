@@ -8,7 +8,7 @@ terraform {
 
     airbyte = {
       source = "airbytehq/airbyte"
-      version = "~> 0.3.0"
+      version = "~> 0.3.1"
     }
 
   }
