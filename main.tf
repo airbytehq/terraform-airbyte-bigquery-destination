@@ -1,6 +1,5 @@
 terraform {
   required_providers {
-    # TODO: Make versions not hard pinned
     google = {
       source = "hashicorp/google"
       version = ">= 4.74.0"
@@ -8,7 +7,7 @@ terraform {
 
     airbyte = {
       source = "airbytehq/airbyte"
-      version = "~> 0.3.1"
+      version = "~> 0.3.3"
     }
 
   }
