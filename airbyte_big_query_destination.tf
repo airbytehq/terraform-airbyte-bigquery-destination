@@ -1,6 +1,6 @@
 locals {
   formatted_keep_files_after_processing = var.gcs_file_options.keep_files_after_processing ? "Keep all tmp files in GCS" : "Delete all tmp files from GCS"
-  # This is some shenanigans to appease the terraform provider
+  # The bigquery destination only allows one loading method to be set, the next two lines ensure that only one of the two resources below is instantiated.
   standard_insert_count = var.loading_method == "standard-inserts" ? 1 : 0
   gcs_staging_count = var.loading_method == "gcs-staging" ? 1 : 0
 }
