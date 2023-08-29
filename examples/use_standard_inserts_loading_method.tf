@@ -38,20 +38,14 @@ provider "google" {
   project = local.google_project
 }
 
-# This references an existing gcs bucket
-data "google_storage_bucket" "test_bucket" {
-  name = local.bucket_name
-}
-
-module "bq_destination" {
-  source = "github.com/airbytehq/terraform-airbyte-bigquery-destination"
-  gcp_project_id = local.google_project
+module "bq_destination_si" {
+  source               = "github.com/airbytehq/terraform-airbyte-bigquery-destination"
+  destination_name     = "Bigquery SI Terraform"
+  gcp_project_id       = local.google_project
   airbyte_workspace_id = local.airbyte_workspace_id
   dataset_info = {
-    dataset_id = local.dataset_id
-    dataset_location = lower(data.google_storage_bucket.test_bucket.location)
+    dataset_id       = local.dataset_id
+    dataset_location = local.dataset_location
   }
-  gcs_bucket_info = {
-    gcs_bucket_name = data.google_storage_bucket.test_bucket.name
-  }
+  loading_method = "standard-inserts"
 }
